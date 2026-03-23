@@ -60,7 +60,7 @@ st.markdown("""
       <div class="stat-label">GPUs supported globally<br>across NCP deployments</div>
     </div>
     <div style="background:#080c18;padding:36px 28px;text-align:center;">
-      <div class="stat-big">3GB/s</div>
+      <div class="stat-big">3.9Gb/s</div>
       <div class="stat-label">Per Vera Rubin GPU<br>Exceeds NCP max performance</div>
     </div>
     <div style="background:#080c18;padding:36px 28px;text-align:center;">
@@ -92,7 +92,7 @@ caps = [
         "body": "VAST is the NVIDIA Cloud Partner (NCP) certified data layer powering the world's largest AI clouds. For the AI Cloud, VAST delivers linear performance scaling that supports massive-scale training and inference without the \"east-west\" traffic bottlenecks of legacy shared-nothing architectures.",
         "bullets": [
             ("🟣", "Read bandwidth exceeding 10TB/s for large clusters — GPUs remain fully utilized, maximizing Revenue Per Watt"),
-            ("🟣", "3GB/s per Vera Rubin GPU — exceeding NCP max performance benchmarks"),
+            ("🟣", "3.9Gb/s per Vera Rubin GPU — exceeding NCP max performance benchmarks"),
             ("🟣", "Linear scaling — no performance cliff as cluster size grows"),
             ("🟣", "Deployed at CoreWeave, xAI, and the world's largest AI neo-clouds"),
         ]
@@ -347,7 +347,7 @@ st.markdown("""
       </div>
       <div style="background:#0c1030;border:1px solid #0078ff;border-radius:10px;padding:18px 20px;">
         <div style="font-size:12px;font-weight:700;color:#00c2e0;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">High-Performance Storage (HPS)</div>
-        <div style="font-size:14px;color:#5878a8;">High read and write bandwidth with low latency · <strong style="color:#00c2e0;">Exceeding NCP Max Performance of 3GB/s per GPU</strong></div>
+        <div style="font-size:14px;color:#5878a8;">High read and write bandwidth with low latency · <strong style="color:#00c2e0;">Exceeding NCP Max Performance of 3.9Gb/s per GPU</strong></div>
       </div>
     </div>
     <div style="background:#080c1e;border:1px solid #1e3060;border-radius:10px;padding:18px 24px;">

@@ -1794,7 +1794,7 @@ st.markdown("""
     </div>
     <div class="stat-cell">
       <div class="stat-number">3M+</div>
-      <div class="stat-label">GPUs supported globally<br><span style="font-size:12px;color:#2a4070;">NVIDIA NCP certified · 3GB/s per GPU</span></div>
+      <div class="stat-label">GPUs supported globally<br><span style="font-size:12px;color:#2a4070;">NVIDIA NCP certified · 3.9Gb/s per GPU</span></div>
     </div>
   </div>
 </div>
@@ -1846,13 +1846,13 @@ st.markdown("""
       <p style="margin-top:16px;">VAST delivers linear performance scaling for Humain's GPU clusters:</p>
       <ul style="margin:12px 0 0;padding-left:20px;color:#5878a8;font-size:15px;line-height:2.0;">
         <li><strong style="color:#e8e8f0;">Read bandwidth exceeding 10TB/s</strong> — GPUs remain fully utilized, maximizing Revenue Per Watt</li>
-        <li><strong style="color:#e8e8f0;">3GB/s per Vera Rubin GPU</strong> — exceeding NCP max performance benchmarks</li>
+        <li><strong style="color:#e8e8f0;">3.9Gb/s per Vera Rubin GPU</strong> — exceeding NCP max performance benchmarks</li>
         <li><strong style="color:#e8e8f0;">99.999% uptime</strong> — AI training job failure rates reduced by 90% vs. legacy parallel file systems</li>
         <li><strong style="color:#e8e8f0;">Non-Disruptive Upgrades</strong> — rolling updates of stateless containers; HUMAIN's AI cloud stays online 24/7/365</li>
       </ul>
     </div>
     <div class="zigzag-visual">
-      <div class="pill pill-purple"><span class="pill-dot"></span><div><strong style="color:#7ee8f8;">NVIDIA NCP Certified</strong><br><span style="font-size:14px;">3GB/s per GPU — exceeds NCP max performance</span></div></div>
+      <div class="pill pill-purple"><span class="pill-dot"></span><div><strong style="color:#7ee8f8;">NVIDIA NCP Certified</strong><br><span style="font-size:14px;">3.9Gb/s per GPU — exceeds NCP max performance</span></div></div>
       <div class="pill pill-orange"><span class="pill-dot"></span><div><strong style="color:#fed7aa;">10TB/s+ Read Bandwidth</strong><br><span style="font-size:14px;">Zero GPU starvation across Humain's AI factory</span></div></div>
       <div class="pill pill-green"><span class="pill-dot"></span><div><strong style="color:#a7f3d0;">3M+ GPUs worldwide</strong><br><span style="font-size:14px;">Powering CoreWeave, xAI, and the world's largest AI clouds</span></div></div>
       <div class="pill pill-blue"><span class="pill-dot"></span><div><strong style="color:#bfdbfe;">99.999% uptime</strong><br><span style="font-size:14px;">Job failure rate −90% vs. legacy parallel file systems</span></div></div>
