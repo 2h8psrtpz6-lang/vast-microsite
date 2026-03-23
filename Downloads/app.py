@@ -8,6 +8,41 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# ── Password Gate ──────────────────────────────────────────────────────────────
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    st.markdown("""
+    <style>
+    .auth-container {
+        max-width: 420px; margin: 15vh auto; padding: 48px;
+        background: #0a0e1f; border: 1px solid #1a2540;
+        border-radius: 20px; text-align: center;
+    }
+    .auth-title { font-size: 28px; font-weight: 900; color: #e8e8f0; margin-bottom: 8px; }
+    .auth-sub { font-size: 15px; color: #5878a8; margin-bottom: 32px; }
+    </style>
+    <div class="auth-container">
+      <div style="font-size:36px;margin-bottom:16px;">⚡</div>
+      <div class="auth-title">VAST AI Factory</div>
+      <div class="auth-sub">Enter your access code to continue</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col_l, col_m, col_r = st.columns([1, 2, 1])
+    with col_m:
+        pwd = st.text_input("", placeholder="Access code", type="password", label_visibility="collapsed")
+        if st.button("Enter →", use_container_width=True, type="primary"):
+            if pwd == "vastaios":
+                st.session_state.authenticated = True
+                st.rerun()
+            else:
+                st.error("Incorrect access code.")
+    st.stop()
+
+
+
 # ── CSS ────────────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
@@ -1654,38 +1689,60 @@ with col_a1:
 
 with col_a2:
     st.markdown("""
-    <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:16px;padding:28px;">
-      <div style="font-size:13px;font-weight:700;letter-spacing:2px;color:#00c2e0;text-transform:uppercase;margin-bottom:20px;text-align:center;">Cluster Hierarchy</div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
 
-      <div style="display:flex;flex-direction:column;gap:8px;align-items:center;margin-bottom:24px;">
-        <div style="background:#052030;border:1px solid #00c2e0;border-radius:6px;padding:10px 20px;width:100px;text-align:center;">
-          <div style="font-size:12px;color:#00c2e0;font-weight:700;">L5</div>
-          <div style="font-size:11px;color:#5878a8;">~1 Quadrillion</div>
+      <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:12px;padding:22px 24px;">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:14px;">Benchmark: VAST vs Milvus</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1a2540;">
+          <span style="font-size:13px;color:#5878a8;">Milvus 2.6 (AISAQ) @ 1B vectors</span>
+          <span style="font-size:15px;font-weight:700;color:#ef4444;">~89 QPS</span>
         </div>
-        <div style="background:#052a38;border:1px solid #00c2e0;border-radius:6px;padding:10px 20px;width:140px;text-align:center;">
-          <div style="font-size:12px;color:#00c2e0;font-weight:700;">L4</div>
-          <div style="font-size:11px;color:#5878a8;">~1 Trillion</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1a2540;">
+          <span style="font-size:13px;color:#5878a8;">VAST @ 1B vectors</span>
+          <span style="font-size:15px;font-weight:700;color:#00c2e0;">~1,000 QPS</span>
         </div>
-        <div style="background:#053040;border:1px solid #00c2e0;border-radius:6px;padding:10px 20px;width:180px;text-align:center;">
-          <div style="font-size:12px;color:#00c2e0;font-weight:700;">L3</div>
-          <div style="font-size:11px;color:#5878a8;">~1 Billion</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1a2540;">
+          <span style="font-size:13px;color:#5878a8;">VAST @ 50B vectors (8 CNodes)</span>
+          <span style="font-size:15px;font-weight:700;color:#00c2e0;">1,026 QPS</span>
         </div>
-        <div style="background:#043850;border:1px solid #00c2e0;border-radius:6px;padding:10px 20px;width:220px;text-align:center;">
-          <div style="font-size:12px;color:#00c2e0;font-weight:700;">L2</div>
-          <div style="font-size:11px;color:#5878a8;">~1 Million</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;">
+          <span style="font-size:13px;color:#5878a8;">Recall rate</span>
+          <span style="font-size:15px;font-weight:700;color:#10b981;">99%</span>
         </div>
-        <div style="background:#00c2e0;border-radius:6px;padding:10px 20px;width:260px;text-align:center;">
-          <div style="font-size:12px;color:#05080f;font-weight:800;">L1</div>
-          <div style="font-size:11px;color:#05080f;font-weight:600;">1,000 Vectors</div>
-        </div>
-        <div style="font-size:12px;color:#3a5080;margin-top:4px;text-align:center;font-style:italic;">Each level × 1,000 capacity</div>
       </div>
 
-      <div style="background:#052030;border:1px solid #00c2e0;border-radius:10px;padding:18px;text-align:center;">
-        <div style="font-size:36px;font-weight:900;color:#00c2e0;line-height:1;">~1M</div>
-        <div style="font-size:14px;font-weight:700;color:#e8e8f0;margin-top:4px;">vectors/sec</div>
-        <div style="font-size:12px;color:#3a5080;margin-top:4px;">Continuous ingest, no index freeze</div>
+      <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:12px;padding:22px 24px;">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:14px;">Cost per 1K Searches @ 50B Vectors</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1a2540;">
+          <span style="font-size:13px;color:#5878a8;">Leading OSS hybrid vector DB</span>
+          <span style="font-size:15px;font-weight:700;color:#ef4444;">$0.033</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;">
+          <span style="font-size:13px;color:#5878a8;">VAST VectorDB</span>
+          <span style="font-size:15px;font-weight:700;color:#10b981;">$0.003</span>
+        </div>
+        <div style="background:#052030;border-radius:8px;padding:12px;text-align:center;margin-top:12px;">
+          <span style="font-size:24px;font-weight:900;color:#00c2e0;">91%</span>
+          <span style="font-size:14px;color:#5878a8;margin-left:8px;">lower cost per query</span>
+        </div>
       </div>
+
+      <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:12px;padding:22px 24px;">
+        <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:14px;">Continuous Ingest Performance</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a2540;">
+          <span style="font-size:13px;color:#5878a8;">Sustained ingest (Parquet)</span>
+          <span style="font-size:14px;font-weight:700;color:#00c2e0;">~1M vectors/sec</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a2540;">
+          <span style="font-size:13px;color:#5878a8;">Background clustering</span>
+          <span style="font-size:14px;font-weight:700;color:#00c2e0;">~290K vectors/sec</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+          <span style="font-size:13px;color:#5878a8;">Index freeze during ingest</span>
+          <span style="font-size:14px;font-weight:700;color:#10b981;">None</span>
+        </div>
+      </div>
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -1698,10 +1755,10 @@ st.markdown("""
 
 col_b1, col_b2, col_b3, col_b4 = st.columns(4, gap="medium")
 for col, stat, label, sublabel in [
-    (col_b1, "11×", "Faster than Milvus", "at 50B vector benchmark"),
-    (col_b2, "1T+", "Vectors in production", "stable, no index rebuilds"),
-    (col_b3, "0", "ETL pipelines needed", "vectors are native DB columns"),
-    (col_b4, "1", "System to manage", "not 3 separate datastores"),
+    (col_b1, "11×", "Faster than Milvus", "1B vector benchmark, same hardware"),
+    (col_b2, "91%", "Lower cost per query", "at 50B vectors vs leading OSS"),
+    (col_b3, "50B+", "Vectors on 8 CNodes", "stable throughput, no shards"),
+    (col_b4, "99%", "Recall rate", "no accuracy tradeoff for scale"),
 ]:
     with col:
         col.markdown(f"""
