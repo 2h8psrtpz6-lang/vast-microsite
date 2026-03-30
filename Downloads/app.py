@@ -8,40 +8,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ── Password Gate ──────────────────────────────────────────────────────────────
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-
-if not st.session_state.authenticated:
-    st.markdown("""
-    <style>
-    .auth-container {
-        max-width: 420px; margin: 15vh auto; padding: 48px;
-        background: #0a0e1f; border: 1px solid #1a2540;
-        border-radius: 20px; text-align: center;
-    }
-    .auth-title { font-size: 28px; font-weight: 900; color: #e8e8f0; margin-bottom: 8px; }
-    .auth-sub { font-size: 15px; color: #5878a8; margin-bottom: 32px; }
-    </style>
-    <div class="auth-container">
-      <div style="font-size:36px;margin-bottom:16px;">⚡</div>
-      <div class="auth-title">VAST AI Factory</div>
-      <div class="auth-sub">Enter your access code to continue</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    col_l, col_m, col_r = st.columns([1, 2, 1])
-    with col_m:
-        pwd = st.text_input("", placeholder="Access code", type="password", label_visibility="collapsed")
-        if st.button("Enter →", use_container_width=True, type="primary"):
-            if pwd == "vastaios":
-                st.session_state.authenticated = True
-                st.rerun()
-            else:
-                st.error("Incorrect access code.")
-    st.stop()
-
-
 
 # ── CSS ────────────────────────────────────────────────────────────────────────
 st.markdown("""
@@ -332,13 +298,13 @@ st.markdown("""
   <div class="hero-mesh"></div>
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
-    VAST × NVIDIA · AI Data Factory for the Cloud
+    VAST AI Factory · Public &amp; Private Cloud
   </div>
-  <h1>VAST AI Factory</h1>
+  <h1>VAST AI Factory for<br>Public &amp; Private Cloud</h1>
   <p class="hero-sub">
-    As Humain consolidates AI demand across 26 Saudi ministries, VAST provides
+    As VAST consolidates AI demand across enterprise tenants, VAST provides
     the foundational Operating System for AI — scaling from 25,000 cameras today
-    to 500,000 cameras nationwide, with real-time agentic intelligence at every layer.
+    to 500,000+ camera deployments, with real-time agentic intelligence at every layer.
   </p>
   <div class="hero-ctas">
     <a href="#solutions" class="btn-primary">Explore Solutions</a>
@@ -353,27 +319,29 @@ st.markdown('<div id="solutions"></div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="section">
   <div class="section-label">Solutions &amp; Use Cases</div>
-  <div class="section-title">Agentic Blueprints.<br>One Fully Integrated Stack with NVIDIA.</div>
+  <div class="section-title">VAST Foundation Stack<br>for NVIDIA Blueprints.</div>
   <div class="section-sub">
-    NVIDIA VLMs and LLMs run natively on VAST AIOS —
-    from video ingest to agentic response, no ETL required.
+    Production-ready, open-source E2E pipelines that demonstrate the full power of VAST AI OS —
+    from video intelligence to genomics to enterprise RAG and fraud detection.
   </div>
 </div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
 <div style="font-size:14px;font-weight:700;letter-spacing:2px;color:#00c2e0;text-transform:uppercase;padding:0 0 8px 0;">
-  VAST Blueprints with NVIDIA
+  VAST Foundation Stack for NVIDIA Blueprints
 </div>
 """, unsafe_allow_html=True)
-tab1, tab2 = st.tabs([
-    "🎥  Video Search Summarization (VSS)",
-    "📄  Document RAG / Research Assistant",
+tab1, tab2, tab_genomics, tab_fraud = st.tabs([
+    "🎥  Video Search & Summarization",
+    "📄  Research Assistant",
+    "🧬  Genomic RAG Engine",
+    "🛡️  Transaction Fraud Detection",
 ])
 
 st.markdown("""
 <div style="padding:8px 0 0 0;">
-  <div style="font-size:16px;font-weight:800;color:#e8e8f0;margin-bottom:4px;">Other Pipeline Solutions</div>
+  <div style="font-size:16px;font-weight:800;color:#e8e8f0;margin-bottom:4px;">Other AI Pipelines</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -441,28 +409,28 @@ with tab1:
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST Wins — 5 Unmatched USPs</div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🏗️ USP 1 — DASE: The Only Architecture That Doesn't Break at Scale</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🏗️ DASE: The Only Architecture That Doesn't Break at Scale</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Legacy systems hit critical bottlenecks at 20,000–30,000 cameras because centralized metadata servers become hotspots. VAST's Disaggregated Shared-Everything (DASE) architecture separates compute logic from storage media over an NVMe fabric — every node accesses a global, lockless metadata pool. Result: linear scaling to 500K cameras with <strong style="color:#e8e8f0;">zero degradation</strong>.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 USP 2 — Trillions of Vectors, One Namespace, Zero Fragmentation</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 Trillions of Vectors, One Namespace, Zero Fragmentation</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">500K cameras × 10s chunks × 30 days = <strong style="color:#e8e8f0;">259 billion vectors minimum</strong>. Competing vector DBs crash at this scale. VAST VectorDB is engineered for stability at exabyte scale — vectors stored as a column alongside timestamps, GPS, camera IDs, and ACLs in one unified table. Hybrid semantic + metadata search in a single query.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 USP 3 — Cosmos Reason 2: From Detection to Deliberate Reasoning</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Cosmos Reason 2: From Detection to Deliberate Reasoning</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Traditional VMS vendors do object detection — they can count cars, not reason about them. NVIDIA Cosmos Reason 2 uses Chain-of-Thought inference to answer <em style="color:#00c2e0;">why</em> something is happening: distinguishing a stalled vehicle from a stopped one, differentiating normal crowd behaviour from a public safety emergency, adapting to scenarios never explicitly programmed.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔁 USP 4 — Re-Process Any Historical Video Instantly</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔁 Re-Process Any Historical Video Instantly</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">New person of interest? New investigation angle? Legacy archives require slow cold-storage rehydration — hours or days of delay. VAST's all-flash platform means new AI agents re-scan petabytes of historical footage at NVMe speeds instantly. The integrated VastDB lets you query enriched metadata to pinpoint only the relevant clips before re-processing.</div>
           </div>
 
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🛡️ USP 5 — Non-Disruptive AI-ification of Existing Infrastructure</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Humain's clients have existing CCTV command centers worth <strong style="color:#e8e8f0;">hundreds of millions of dollars</strong>. VAST doesn't require ripping them out. Clients simply write output data to the VAST object store — landing data on VAST seamlessly adds AI capabilities to legacy workflows without disrupting current operations.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🛡️ Non-Disruptive AI-ification of Existing Infrastructure</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST's clients have existing CCTV command centers worth <strong style="color:#e8e8f0;">hundreds of millions of dollars</strong>. VAST doesn't require ripping them out. Clients simply write output data to the VAST object store — landing data on VAST seamlessly adds AI capabilities to legacy workflows without disrupting current operations.</div>
           </div>
         </div>
 
@@ -472,7 +440,7 @@ with tab1:
             ✓ &nbsp;Real-time situational awareness — 500K+ feeds simultaneously<br>
             ✓ &nbsp;NL video search: <em>"Crowd density anomaly near Masjid al-Haram"</em><br>
             ✓ &nbsp;Automatic License Plate Recognition (ALPR) at city scale<br>
-            ✓ &nbsp;Crowd &amp; behavioural analysis — Hajj, stadiums, transit hubs<br>
+            ✓ &nbsp;Crowd &amp; behavioural analysis — large-scale, stadiums, transit hubs<br>
             ✓ &nbsp;Digital forensics: faces, plates, objects across disparate networks<br>
             ✓ &nbsp;SAR drone &amp; aerial footage ingestion and analysis<br>
             ✓ &nbsp;GSM signal + geospatial telemetry vector fusion<br>
@@ -540,7 +508,7 @@ with tab4:
       <span class="uc-tag tag-vast">VAST AIOS</span>
       <span class="uc-tag tag-mistral" style="background:rgba(0,180,216,0.12);color:#00b4d8;">NVIDIA DASE</span>
       <h3 style="font-size:34px;font-weight:800;letter-spacing:-0.8px;margin:16px 0 4px;color:#e8e8f0;">Intelligent Mobility &amp; Traffic Flow</h3>
-      <p style="font-size:17px;color:#5878a8;line-height:1.7;margin:0 0 8px;max-width:800px;">VAST serves as the high-performance neural center for KSA smart cities — moving from fixed-timer traffic lights and retrospective monitoring to proactive, real-time orchestration across every intersection, highway, and transit corridor in the Kingdom.</p>
+      <p style="font-size:17px;color:#5878a8;line-height:1.7;margin:0 0 8px;max-width:800px;">VAST serves as the high-performance neural center for AI Cloud smart cities — moving from fixed-timer traffic lights and retrospective monitoring to proactive, real-time orchestration across every intersection, highway, and transit corridor in the cloud.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -552,28 +520,28 @@ with tab4:
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST Wins — 5 Unmatched USPs</div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ USP 1 — Sub-Millisecond Signal Control Across an Entire City Grid</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Sub-Millisecond Signal Control Across an Entire City Grid</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Traditional traffic systems use fixed timers. VAST's DASE architecture provides the sub-millisecond latency required to process live intersection video, compute optimal signal timing, and push updates across an entire city grid <strong style="color:#e8e8f0;">simultaneously</strong> — eliminating ghost traffic jams caused by stale signal data.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🚌 USP 2 — True Multi-Modal Reasoning, Not Just Object Detection</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🚌 True Multi-Modal Reasoning, Not Just Object Detection</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Most traffic AI classifies vehicles by type. VAST + Cosmos Reason 2 understands <em style="color:#00c2e0;">intent and context</em> — distinguishing a delivery truck making a legal stop from one blocking a lane, or a cyclist moving safely vs. one in danger. This contextual understanding enables automated speed limit changes, lane priority shifts, and emergency routing that legacy systems cannot perform.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🏙️ USP 3 — Digital Twins Fed by a Global Namespace</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">City planners need to simulate bridge closures, Hajj crowd flows, and major events before they happen. VAST's Global Namespace means petabytes of historical traffic telemetry from thousands of edge sensors appear as a single local drive — feeding AI simulation factories with the data density required for high-fidelity digital twins.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🏙️ Digital Twins Fed by a Global Namespace</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">City planners need to simulate bridge closures, large-scale crowd flows, and major events before they happen. VAST's Global Namespace means petabytes of historical traffic telemetry from thousands of edge sensors appear as a single local drive — feeding AI simulation factories with the data density required for high-fidelity digital twins.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🚑 USP 4 — Automatic Green Waves with Cross-Department Data Sharing</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🚑 Automatic Green Waves with Cross-Department Data Sharing</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">When an incident is detected, VAST DataSpace makes the data instantly available to Traffic, Fire, and Police simultaneously — without copying or moving it. Green Wave sequences are cleared for emergency vehicles in real-time. No inter-departmental API calls, no delays, no data silos between agencies.</div>
           </div>
 
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📸 USP 5 — Nationwide Speed Fine Detection at Zero Marginal Cost</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">High-resolution traffic cameras record directly to VAST DataStore. Localized Inference Agents process frames for speed anomalies and log events into VastDB. Action Agents automatically issue citations via integrated APIs — all without a human in the loop. Scales from one city to the entire Kingdom with no additional infrastructure.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📸 Nationwide Speed Fine Detection at Zero Marginal Cost</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">High-resolution traffic cameras record directly to VAST DataStore. Localized Inference Agents process frames for speed anomalies and log events into VastDB. Action Agents automatically issue citations via integrated APIs — all without a human in the loop. Scales from one city to the entire cloud with no additional infrastructure.</div>
           </div>
         </div>
 
@@ -654,7 +622,7 @@ with tab2:
       <span class="uc-tag tag-vast">VAST DataEngine</span>
       <span class="uc-tag tag-vast">VAST AgentEngine</span>
       <h3 style="font-size:34px;font-weight:800;letter-spacing:-0.8px;margin:16px 0 4px;color:#e8e8f0;">Document RAG</h3>
-      <p style="font-size:17px;color:#5878a8;line-height:1.7;margin:0 0 8px;max-width:800px;">Deploy secure, enterprise-grade AI assistants across all 26 Saudi ministries — each strictly isolated, each respecting its own access control policies — without a single separate vector database, ETL pipeline, or Kafka cluster.</p>
+      <p style="font-size:17px;color:#5878a8;line-height:1.7;margin:0 0 8px;max-width:800px;">Deploy secure, enterprise-grade AI assistants across all enterprise tenants — each strictly isolated, each respecting its own access control policies — without a single separate vector database, ETL pipeline, or Kafka cluster.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -666,28 +634,28 @@ with tab2:
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST Wins — 5 Unmatched USPs</div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔒 USP 1 — Hard Ministry Isolation, Not Soft Permissions</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Most RAG platforms enforce document-level permissions in software — a misconfiguration leaks classified data between ministries. VAST enforces isolation at the <strong style="color:#e8e8f0;">storage fabric level</strong>: tenant-specific VIP pools, VLANs, and encryption keys mean Ministry of Finance data is physically air-gapped from Ministry of Health data on the same hardware.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔒 Hard Ministry Isolation, Not Soft Permissions</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Most RAG platforms enforce document-level permissions in software — a misconfiguration leaks classified data between tenants. VAST enforces isolation at the <strong style="color:#e8e8f0;">storage fabric level</strong>: tenant-specific VIP pools, VLANs, and encryption keys mean Ministry of Finance data is physically air-gapped from Ministry of Health data on the same hardware.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ USP 2 — Zero-ETL: From SharePoint to Searchable in Minutes</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Zero-ETL: From SharePoint to Searchable in Minutes</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Traditional RAG stacks require Airflow pipelines, S3 connectors, and batch jobs to move documents from Confluence, SharePoint, or Google Drive. VAST's native Sync Engine eliminates all of this — documents are pulled automatically, ACLs fetched concurrently, and the moment data lands it triggers the embedding pipeline. <strong style="color:#e8e8f0;">Zero manual orchestration.</strong></div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 USP 3 — Vectors + Metadata in One Table, One Query</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 Vectors + Metadata in One Table, One Query</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">AWS RAG stacks require stitching together RDS for metadata and a separate vector DB (Milvus, Pinecone) for semantic search — two round trips per query, two systems to maintain, two failure points. VAST stores vectors as a column in VastDB alongside ACLs and metadata. A single hybrid query returns semantically relevant, permission-filtered results.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📦 USP 4 — Serverless Scale-to-Zero, No EKS Management</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Managing EKS node groups to process document queues is expensive and complex. VAST DataEngine runs containerized embedding functions natively on the storage cluster. Document backlog? Auto-scales up. Idle? Scales to <strong style="color:#e8e8f0;">2GB RAM and 2 cores</strong>. Humain pays only for what runs — no over-provisioned compute sitting idle.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📦 Serverless Scale-to-Zero, No EKS Management</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Managing EKS node groups to process document queues is expensive and complex. VAST DataEngine runs containerized embedding functions natively on the storage cluster. Document backlog? Auto-scales up. Idle? Scales to <strong style="color:#e8e8f0;">2GB RAM and 2 cores</strong>. VAST pays only for what runs — no over-provisioned compute sitting idle.</div>
           </div>
 
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 USP 5 — Agent-as-a-Service via AgentEngine</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST hosts conversational RAG agents directly on the platform via AgentEngine — managing session context natively in VastDB. Humain can offer autonomous AI copilots, document summarizers, and compliance agents to ministry customers as a managed service. No external LLM orchestration frameworks required.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Agent-as-a-Service via AgentEngine</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST hosts conversational RAG agents directly on the platform via AgentEngine — managing session context natively in VastDB. VAST can offer autonomous AI copilots, document summarizers, and compliance agents to tenant customers as a managed service. No external LLM orchestration frameworks required.</div>
           </div>
         </div>
         """, unsafe_allow_html=True)
@@ -723,7 +691,7 @@ with tab2:
 
           <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:14px 16px;margin-bottom:6px;display:flex;gap:12px;align-items:flex-start;">
             <div style="width:8px;height:8px;border-radius:50%;background:#0078ff;flex-shrink:0;margin-top:6px;"></div>
-            <div><strong style="color:#7ee8f8;font-size:15px;">Stage 5 · VastDB Unified Store</strong><br><span style="font-size:14px;color:#7090c0;">Vectors + ACLs + metadata written as columns in VastDB. Single table, single query engine. No RDS + Milvus stitching. Hard ministry isolation enforced at storage fabric level.</span></div>
+            <div><strong style="color:#7ee8f8;font-size:15px;">Stage 5 · VastDB Unified Store</strong><br><span style="font-size:14px;color:#7090c0;">Vectors + ACLs + metadata written as columns in VastDB. Single table, single query engine. No RDS + Milvus stitching. Hard tenant isolation enforced at storage fabric level.</span></div>
           </div>
           <div style="padding-left:16px;color:#3a3a5a;">↓</div>
 
@@ -736,11 +704,11 @@ with tab2:
         <div style="background:#080c1e;border:1px solid #1e3060;border-radius:10px;padding:18px 20px;">
           <div style="font-size:14px;font-weight:700;letter-spacing:1.5px;color:#3a5080;text-transform:uppercase;margin-bottom:14px;">Key Capabilities</div>
           <div style="font-size:15px;color:#6080b0;line-height:2.3;">
-            ✓ &nbsp;Hard isolation between 26 Saudi ministries<br>
+            ✓ &nbsp;Hard isolation between enterprise tenants<br>
             ✓ &nbsp;Zero-ETL sync from enterprise content sources<br>
             ✓ &nbsp;Scale-to-zero serverless compute — 2GB RAM idle<br>
             ✓ &nbsp;Unified vector + metadata in a single VastDB query<br>
-            ✓ &nbsp;AgentEngine — Agent-as-a-Service for ministry customers<br>
+            ✓ &nbsp;AgentEngine — Agent-as-a-Service for tenant customers<br>
             ✓ &nbsp;Open-source blueprint on <a href="https://github.com/vast-data/cosmos-labs" target="_blank" style="color:#00c2e0;">Cosmos Labs GitHub</a>
           </div>
         </div>
@@ -752,7 +720,7 @@ with tab11:
       <span class="uc-tag tag-vast">VAST Event Broker</span>
       <span class="uc-tag tag-vast">VAST InsightEngine</span>
       <span class="uc-tag tag-vast">VAST AgentEngine</span>
-      <h3 style="font-size:34px;font-weight:800;letter-spacing:-0.8px;margin:16px 0 4px;color:#e8e8f0;">Observability at Kingdom Scale</h3>
+      <h3 style="font-size:34px;font-weight:800;letter-spacing:-0.8px;margin:16px 0 4px;color:#e8e8f0;">Observability at cloud Scale</h3>
       <p style="font-size:17px;color:#5878a8;line-height:1.7;margin:0 0 8px;max-width:800px;">Traditional observability platforms like Splunk and Datadog charge $1–$4/GB ingestion — economically untenable at 500K camera scale. VAST runs the entire observability pipeline on-platform at flat storage economics, with AI-native diagnostics and closed-loop automated remediation.</p>
     </div>
     """, unsafe_allow_html=True)
@@ -765,28 +733,28 @@ with tab11:
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST Wins — 5 Unmatched USPs</div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">💰 USP 1 — Flat Economics: Cents/GB vs. $1–$4/GB</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">At Humain's scale — 500K cameras, 26 ministries, thousands of edge nodes — Splunk/Datadog per-GB pricing becomes <strong style="color:#e8e8f0;">tens of millions of dollars annually</strong>. VAST runs the observability pipeline directly on-platform. No per-GB ingestion fees. No hot/warm/cold tiering. No retention cliffs. Full resolution data retained for months to years.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">💰 Flat Economics: Cents/GB vs. $1–$4/GB</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">At VAST's scale — 500K cameras, 26 tenants, thousands of edge nodes — Splunk/Datadog per-GB pricing becomes <strong style="color:#e8e8f0;">tens of millions of dollars annually</strong>. VAST runs the observability pipeline directly on-platform. No per-GB ingestion fees. No hot/warm/cold tiering. No retention cliffs. Full resolution data retained for months to years.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 USP 2 — AI-First Diagnostics: Natural Language, Not Dashboards</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 AI-First Diagnostics: Natural Language, Not Dashboards</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Engineers describe symptoms in natural language — "latency spikes on Camera Zone 7 after 11pm" — and the AI autonomously investigates: querying error rates, following distributed traces, checking infrastructure health, cross-referencing operational runbooks. Mean time to diagnosis drops from <strong style="color:#e8e8f0;">hours to minutes</strong>. Senior SRE expertise democratized to every engineer.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔗 USP 3 — Unified Signal Correlation in One SQL Query</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔗 Unified Signal Correlation in One SQL Query</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Traditional tools require manual pivoting between Splunk (logs), Datadog (metrics), and Jaeger (traces) — three separate systems, three interfaces, three data silos. VAST stores all three signals in one VastDB table, queryable via a single Trino SQL engine. An AI agent joins a latency spike in traces with a CPU anomaly in metrics and an error in logs <strong style="color:#e8e8f0;">in one query</strong>.</div>
           </div>
 
           <div style="margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #1a1a2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔄 USP 4 — Closed-Loop: Detect, Diagnose, and Remediate Automatically</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔄 Closed-Loop: Detect, Diagnose, and Remediate Automatically</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Statistical anomaly detection learns per-service baselines and fires alerts on deviations — not static thresholds that generate false alarms. Each anomaly automatically triggers an AI investigation. Engineers arrive at the alert with the root cause already identified. <strong style="color:#e8e8f0;">Low-risk actions auto-execute</strong>; medium-risk require one-click approval; high-risk create tickets with full diagnostic context.</div>
           </div>
 
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">♾️ USP 5 — Infinite Retention: Last Year's Data at Today's Latency</div>
-            <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST's disaggregated architecture separates compute from storage — last year's telemetry is queryable with the same sub-second latency as today's data. Historical baselines enable trend analysis, regression investigation, and compliance auditing across the entire Kingdom's infrastructure without rehydration delays or additional cost.</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">♾️ Infinite Retention: Last Year's Data at Today's Latency</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST's disaggregated architecture separates compute from storage — last year's telemetry is queryable with the same sub-second latency as today's data. Historical baselines enable trend analysis, regression investigation, and compliance auditing across the entire cloud's infrastructure without rehydration delays or additional cost.</div>
           </div>
         </div>
         """, unsafe_allow_html=True)
@@ -798,7 +766,7 @@ with tab11:
 
           <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:14px 16px;margin-bottom:6px;display:flex;gap:12px;align-items:flex-start;">
             <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;margin-top:6px;"></div>
-            <div><strong style="color:#fed7aa;font-size:15px;">Stage 1 · Collection</strong><br><span style="font-size:14px;color:#7090c0;">OpenTelemetry collectors gather traces, metrics, and logs from 500K cameras, edge nodes, AI pipelines, and ministry services. Open standard — no proprietary agents.</span></div>
+            <div><strong style="color:#fed7aa;font-size:15px;">Stage 1 · Collection</strong><br><span style="font-size:14px;color:#7090c0;">OpenTelemetry collectors gather traces, metrics, and logs from 500K cameras, edge nodes, AI pipelines, and tenant services. Open standard — no proprietary agents.</span></div>
           </div>
           <div style="padding-left:16px;color:#3a3a5a;">↓</div>
 
@@ -828,7 +796,7 @@ with tab11:
 
           <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;">
             <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;margin-top:6px;"></div>
-            <div><strong style="color:#fed7aa;font-size:15px;">Stage 6 · Closed-Loop Remediation</strong><br><span style="font-size:14px;color:#7090c0;">Low-risk: auto-execute (restart pod, clear cache). Medium-risk: one-click approval. High-risk: ticket with full context. Full audit trail logged for Kingdom-wide compliance reporting.</span></div>
+            <div><strong style="color:#fed7aa;font-size:15px;">Stage 6 · Closed-Loop Remediation</strong><br><span style="font-size:14px;color:#7090c0;">Low-risk: auto-execute (restart pod, clear cache). Medium-risk: one-click approval. High-risk: ticket with full context. Full audit trail logged for cloud-wide compliance reporting.</span></div>
           </div>
         </div>
 
@@ -868,23 +836,23 @@ with tab5:
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">USPs — Why VAST for CAR-T</div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 Unified Genomic + Clinical Data Lake</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Unified Genomic + Clinical Data Lake</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Raw genome files, patient records, and clinical trial PDFs unified in VastDB — no separate S3 + Aurora + Milvus stack. Hybrid similarity + metadata search across patient cohorts in a single query.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🛡️ PHI Auto-Masking on Write</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. PHI Auto-Masking on Write</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine serverless functions mask Patient Health Information the moment data enters the platform — before any model sees it. HIPAA compliance without multi-step ETL pipelines.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔓 Swap Endpoints — No Bedrock Lock-in</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Swap Endpoints — No Bedrock Lock-in</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">The CAR-T blueprint is fully open-source. Replace any default NVIDIA model with your own fine-tuned LLM endpoint — drop in the latest biomedical model without redesigning infrastructure.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Scale-to-Zero Serverless Compute</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Scale-to-Zero Serverless Compute</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine auto-scales processing functions linearly when trial data backlogs build up — scales to zero when idle. No EKS node groups to manage.</div>
           </div>
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📊 Outcome Reasoning at Petabyte Scale</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. Outcome Reasoning at Petabyte Scale</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Agent reasons across patient genomes, treatment protocols, and adverse event records simultaneously — enabling automated drug discovery and treatment pathway optimization across entire patient populations.</div>
           </div>
         </div>
@@ -939,23 +907,23 @@ with tab6:
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">USPs — Why VAST for Medical Imaging</div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🏥 Edge-to-Core — Sub-30ms at Hospital Level</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Edge-to-Core — Sub-30ms at Hospital Level</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">4K surgical imaging and live patient monitoring cannot tolerate latency back to a central cloud region. VAST DataSpace bridges hospital edge nodes with the core via a Global Namespace — VLMs run locally for real-time clinical decision support.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📡 Massive Bandwidth for Multi-Modal Imaging</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Massive Bandwidth for Multi-Modal Imaging</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Legacy storage maxes out at one or two 4K feeds. VAST provides the immense bus capacity to run multiple simultaneous 4K and 8K imaging streams — critical for operating theatres, radiology departments, and multi-site hospital networks.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔍 DICOM + Vector Hybrid Search</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. DICOM + Vector Hybrid Search</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">DICOM metadata, imaging vectors, and patient records stored as columns in VastDB. Radiologists search across petabytes of historical scans using natural language — "show all chest CTs with nodules larger than 8mm in patients over 60."</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Real-Time Clinical Decision Support</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Real-Time Clinical Decision Support</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">VLM analyzes live surgical video and imaging streams — detecting anomalies, flagging critical findings, and surfacing relevant historical cases in real time alongside the procedure.</div>
           </div>
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔓 Open-Source — Swap Any VLM Endpoint</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. Open-Source — Swap Any VLM Endpoint</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">The imaging blueprint is fully open-source. Replace the default NVIDIA VLM with any fine-tuned medical imaging model — deploy Pixtral, BioViL, or your own endpoint without infrastructure changes.</div>
           </div>
         </div>
@@ -1010,23 +978,23 @@ with tab7:
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">USPs — Biomedical RAG on VAST</div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📚 Live RAG on Scientific Literature + EHRs</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">6. Live RAG on Scientific Literature + EHRs</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Ingest PubMed, clinical guidelines, oncology trial data, and patient EHRs into one unified VastDB. Clinicians and researchers query across all sources simultaneously — automated drug discovery, disease diagnosis from patient genomes, evidence synthesis.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔒 ACL-Enforced — Clinician-Level Access Control</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">7. ACL-Enforced — Clinician-Level Access Control</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">ACLs from hospital systems fetched at ingest and stored natively in VastDB. When a doctor queries the agent, it only surfaces records they are explicitly authorized to view — zero additional IAM engineering.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 Genome + Clinical Hybrid Search</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">8. Genome + Clinical Hybrid Search</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Patient genome embeddings, demographic metadata, and regulatory flags stored as columns in one VastDB table. Hybrid queries join genomic similarity search with structured patient filters — enabling population-scale disease diagnosis.</div>
           </div>
           <div style="margin-bottom:18px;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Event-Driven — New Literature Auto-Ingested</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">9. Event-Driven — New Literature Auto-Ingested</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Sync Engine continuously pulls new publications from configured sources. The moment a paper lands in S3, DataEngine triggers chunking and embedding automatically — the knowledge base stays current without manual intervention.</div>
           </div>
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Hosted Agents — No External Orchestration</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">10. Hosted Agents — No External Orchestration</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">RAG agents hosted directly on VAST AgentEngine, managing conversation sessions and context natively in VastDB. Deploy a Biomedical Evidence agent, a Drug Discovery agent, or a Clinical Trial Matching agent — all on the same platform.</div>
           </div>
         </div>
@@ -1078,6 +1046,195 @@ with tab7:
     """, unsafe_allow_html=True)
 
 
+with tab_genomics:
+    st.markdown("""
+    <div style="padding:24px 0 8px;">
+      <span class="uc-tag tag-vast">VAST DataEngine</span>
+      <span class="uc-tag tag-mistral" style="background:rgba(0,194,224,0.12);color:#00c2e0;">NVIDIA NIM</span>
+      <span class="uc-tag tag-vast">VAST VectorDB</span>
+      <h3 style="font-size:34px;font-weight:800;letter-spacing:-0.8px;margin:16px 0 8px;color:#e8e8f0;">Genomic RAG Engine</h3>
+      <p style="font-size:16px;color:#5878a8;line-height:1.7;max-width:820px;margin:0 0 8px;">
+        DNA Sequencing to Clinical Insights. Transform raw FASTQ files into searchable clinical knowledge — 
+        variant calling, ClinVar enrichment, AI explanations, and semantic search, all automated on VAST AI OS.
+      </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col_g1, col_g2 = st.columns(2, gap="large")
+    with col_g1:
+        st.markdown("""
+        <div style="background:#080c1e;border:1px solid #1a2a50;border-radius:12px;padding:22px 26px;">
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Genomics</div>
+
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Petabyte-Scale Genomic Data Lake</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Raw FASTQ files, BAM/VCF outputs, and ClinVar annotations unified in one VAST namespace. No separate object store, no data movement between preprocessing and analysis stages.</div>
+          </div>
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Event-Driven Variant Calling Pipeline</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">FASTQ file lands in S3 → DataEngine triggers variant calling pipeline automatically → ClinVar enrichment → LLM explanation generated. Zero manual orchestration, no Airflow pipelines.</div>
+          </div>
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Vector Columns for Semantic Clinical Search</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Genomic embeddings stored as columns alongside patient metadata and ACLs in VastDB. Hybrid queries combine variant similarity search with structured filters — enabling population-scale disease diagnosis.</div>
+          </div>
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. LLM Memoization — No Repeated Inference</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST stores LLM-generated explanations natively in VastDB. Identical variants reuse cached explanations — dramatically reducing GPU inference costs at population scale.</div>
+          </div>
+          <div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. HIPAA-Ready — PHI Masked on Write</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine serverless functions strip PHI the moment data enters the platform. ACLs from hospital systems stored natively alongside records — clinicians only see data they are authorized to view.</div>
+          </div>
+        </div>
+        <div style="background:#080c1e;border:1px solid #1a2540;border-radius:10px;padding:16px 20px;margin-top:14px;">
+          <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#3a5080;text-transform:uppercase;margin-bottom:12px;">Industries</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="background:#0c1030;border:1px solid #1e3060;border-radius:100px;padding:4px 14px;font-size:13px;color:#7090c0;">Healthcare</span>
+            <span style="background:#0c1030;border:1px solid #1e3060;border-radius:100px;padding:4px 14px;font-size:13px;color:#7090c0;">Life Sciences</span>
+            <span style="background:#0c1030;border:1px solid #1e3060;border-radius:100px;padding:4px 14px;font-size:13px;color:#7090c0;">Pharma</span>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_g2:
+        st.markdown("""
+        <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:16px;padding:28px;margin-bottom:16px;">
+          <div style="font-size:15px;font-weight:700;letter-spacing:2px;color:#00c2e0;text-transform:uppercase;margin-bottom:16px;">Genomic RAG Pipeline</div>
+
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#7ee8f8;font-size:15px;">FASTQ Upload</strong><br><span style="font-size:14px;color:#7090c0;">Raw DNA sequence files land in VAST S3 via S3 Event Triggers</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#f97316;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#fed7aa;font-size:15px;">Variant Calling</strong><br><span style="font-size:14px;color:#7090c0;">DataEngine pipeline runs GATK/DeepVariant → ClinVar enrichment automated</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#0078ff;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#7ee8f8;font-size:15px;">Embeddings</strong><br><span style="font-size:14px;color:#7090c0;">NVIDIA NIM generates genomic embeddings → stored as Vector Columns in VastDB alongside metadata</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#0078ff;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#7ee8f8;font-size:15px;">LLM Memoization</strong><br><span style="font-size:14px;color:#7090c0;">LLM generates clinical explanations — cached in VastDB, reused for identical variants</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#10b981;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#a7f3d0;font-size:15px;">Semantic Search</strong><br><span style="font-size:14px;color:#7090c0;">Clinicians query in natural language — hybrid vector + metadata search, ACL-enforced, drug discovery enabled</span></div>
+          </div>
+        </div>
+        <div style="background:#080c1e;border:1px solid #1a2540;border-radius:10px;padding:16px 20px;">
+          <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#3a5080;text-transform:uppercase;margin-bottom:12px;">Key Capabilities</div>
+          <div style="font-size:14px;color:#6080b0;line-height:2.2;">
+            ✓ &nbsp;FASTQ → clinical insight, fully automated<br>
+            ✓ &nbsp;Variant calling + ClinVar enrichment on ingest<br>
+            ✓ &nbsp;LLM memoization — reuse cached explanations<br>
+            ✓ &nbsp;Vector columns native in VastDB<br>
+            ✓ &nbsp;PHI masked on write — HIPAA ready
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+with tab_fraud:
+    st.markdown("""
+    <div style="padding:24px 0 8px;">
+      <span class="uc-tag tag-vast">VAST Event Broker</span>
+      <span class="uc-tag tag-vast">VAST DataEngine</span>
+      <span class="uc-tag tag-vast">VAST VectorDB</span>
+      <h3 style="font-size:34px;font-weight:800;letter-spacing:-0.8px;margin:16px 0 8px;color:#e8e8f0;">Transaction Fraud Detection</h3>
+      <p style="font-size:16px;color:#5878a8;line-height:1.7;max-width:820px;margin:0 0 8px;">
+        Real-Time Anomaly Scoring. Millisecond fraud detection with built-in PII masking — 
+        combines rule-based scoring with ML vector similarity to catch fraud patterns in real-time 
+        across financial services, insurance, and e-commerce.
+      </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col_f1, col_f2 = st.columns(2, gap="large")
+    with col_f1:
+        st.markdown("""
+        <div style="background:#080c1e;border:1px solid #1a2a50;border-radius:12px;padding:22px 26px;">
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Fraud Detection</div>
+
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Millisecond Event Streaming — No External Kafka</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST's built-in Kafka-compatible Event Broker ingests transaction streams at 1.4M events/sec per node. No external message broker to manage — the streaming layer is native to the storage platform.</div>
+          </div>
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. PII Masking Built Into the Pipeline</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine serverless functions strip and mask PII the moment transactions arrive — before any model sees the data. PCI-DSS compliant by design, not by bolt-on.</div>
+          </div>
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. 7-Factor Scoring + ML Vector Similarity</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Rule-based 7-factor scoring combined with ML vector similarity search in a single VastDB query — catching both known patterns and novel fraud that rules alone miss.</div>
+          </div>
+          <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1a2540;">
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Unified Transaction + Vector Store</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Transaction records, fraud embeddings, and account metadata stored as columns in one VastDB table. No stitching together separate stream processors, vector DBs, and relational databases.</div>
+          </div>
+          <div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. Real-Time Dashboard + Agentic Actions</div>
+            <div style="font-size:15px;color:#5878a8;line-height:1.7;">Detected fraud triggers instant downstream actions — account freeze, compliance alert, case creation — all orchestrated via DataEngine without external workflow tools.</div>
+          </div>
+        </div>
+        <div style="background:#080c1e;border:1px solid #1a2540;border-radius:10px;padding:16px 20px;margin-top:14px;">
+          <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#3a5080;text-transform:uppercase;margin-bottom:12px;">Industries</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="background:#0c1030;border:1px solid #1e3060;border-radius:100px;padding:4px 14px;font-size:13px;color:#7090c0;">Financial Services</span>
+            <span style="background:#0c1030;border:1px solid #1e3060;border-radius:100px;padding:4px 14px;font-size:13px;color:#7090c0;">Insurance</span>
+            <span style="background:#0c1030;border:1px solid #1e3060;border-radius:100px;padding:4px 14px;font-size:13px;color:#7090c0;">E-Commerce</span>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_f2:
+        st.markdown("""
+        <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:16px;padding:28px;margin-bottom:16px;">
+          <div style="font-size:15px;font-weight:700;letter-spacing:2px;color:#00c2e0;text-transform:uppercase;margin-bottom:16px;">Fraud Detection Pipeline</div>
+
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#f97316;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#fed7aa;font-size:15px;">Event Broker</strong><br><span style="font-size:14px;color:#7090c0;">Transaction stream ingested at 1.4M events/sec — no external Kafka needed</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#0078ff;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#7ee8f8;font-size:15px;">PII Mask</strong><br><span style="font-size:14px;color:#7090c0;">DataEngine strips PII instantly on arrival — PCI-DSS compliant before any model access</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#0078ff;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#7ee8f8;font-size:15px;">Embed</strong><br><span style="font-size:14px;color:#7090c0;">Transaction embedding generated → stored as Vector Column in VastDB alongside account metadata</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#f97316;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#fed7aa;font-size:15px;">7-Factor Score</strong><br><span style="font-size:14px;color:#7090c0;">Rule-based scoring + ML vector similarity in single VastDB query — known + novel fraud caught</span></div>
+          </div>
+          <div style="padding-left:12px;color:#1a2540;">↓</div>
+          <div style="background:#080c1e;border:1px solid #1e3060;border-radius:8px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:7px;height:7px;border-radius:50%;background:#10b981;flex-shrink:0;margin-top:5px;"></div>
+            <div><strong style="color:#a7f3d0;font-size:15px;">Dashboard + Action</strong><br><span style="font-size:14px;color:#7090c0;">Real-time fraud dashboard + agentic actions: account freeze, compliance alert, case creation</span></div>
+          </div>
+        </div>
+        <div style="background:#080c1e;border:1px solid #1a2540;border-radius:10px;padding:16px 20px;">
+          <div style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#3a5080;text-transform:uppercase;margin-bottom:12px;">Key Capabilities</div>
+          <div style="font-size:14px;color:#6080b0;line-height:2.2;">
+            ✓ &nbsp;1.4M events/sec native — no external Kafka<br>
+            ✓ &nbsp;PII masking built into ingest pipeline<br>
+            ✓ &nbsp;7-factor scoring + ML vector similarity<br>
+            ✓ &nbsp;PCI-DSS compliant by architecture<br>
+            ✓ &nbsp;Real-time streaming + agentic response
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+
 with tab3:
     st.markdown("""
     <div style="padding:24px 0 8px;">
@@ -1091,12 +1248,12 @@ with tab3:
     with col_s1:
         st.markdown("""
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
-          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">5 Reasons Agencies Choose VAST</div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🗄️ Eliminate 58 Milvus Databases</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Scaling semantic search previously required 58 separate Milvus vector databases — 6–8 FTEs just for patching. VAST replaces all of them with one native vector store built into the platform.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🏗️ Zero Rip-and-Replace</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">The agency kept their $100M CCTV command center intact. Existing VMS systems write camera footage directly to VAST S3 — AI capabilities added on top without disrupting operations.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Serverless Pipelines on Ingest</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">The moment a video chunk lands, the native event broker triggers NVIDIA microservices — VLM inference for scene descriptions, fall detection, accident ID, and violence detection in real time.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔍 Unified Hybrid Search</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VastDB treats vector embeddings as a column alongside metadata — investigators query complex scenarios across 200K cameras without disjointed databases. Sub-second across the entire network.</div></div>
-          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🖥️ 600 H200 + 1,500 GB300 GPUs</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">The agency feeds massive GPU clusters for inference and embodied AI/robotics from VAST — scaling to exabyte levels. Full end-to-end pipeline deploys in under one working day.</div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Smart City</div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Eliminate 58 Milvus Databases</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Scaling semantic search previously required 58 separate Milvus vector databases — 6–8 FTEs just for patching. VAST replaces all of them with one native vector store built into the platform.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Zero Rip-and-Replace</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">The agency kept their $100M CCTV command center intact. Existing VMS systems write camera footage directly to VAST S3 — AI capabilities added on top without disrupting operations.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Serverless Pipelines on Ingest</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">The moment a video chunk lands, the native event broker triggers NVIDIA microservices — VLM inference for scene descriptions, fall detection, accident ID, and violence detection in real time.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Unified Hybrid Search</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VastDB treats vector embeddings as a column alongside metadata — investigators query complex scenarios across 200K cameras without disjointed databases. Sub-second across the entire network.</div></div>
+          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. 600 H200 + 1,500 GB300 GPUs</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">The agency feeds massive GPU clusters for inference and embodied AI/robotics from VAST — scaling to exabyte levels. Full end-to-end pipeline deploys in under one working day.</div></div>
         </div>
         """, unsafe_allow_html=True)
     with col_s2:
@@ -1128,12 +1285,12 @@ with tab12:
     with col_m1:
         st.markdown("""
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
-          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">5 USPs for Broadcast & Media</div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📡 Multi-4K/8K Stream Bandwidth</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Legacy storage maxes at 1–2 4K feeds. VAST provides the bus capacity to run multiple simultaneous 4K and 8K streams — meeting Netflix and Prime Video delivery specs mandated by major platforms.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔍 Command-F for Video Archives</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Search directly within video content — find specific plays, player actions, or the brand of shoes an athlete is wearing across 20 years of footage. Enables coach film review, investigative journalism, and sponsor monetization at scale.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">💰 Own Your Stats — No Rights Fees</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Run open-source AI models locally on VAST — generate your own stats and highlights without paying third-party data provider rights fees or per-query cloud usage fees. Leading sports organizations have saved $1M–$3.5M TCO over 10 years vs. legacy storage vendors.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Automated Clip + Highlight Pipelines</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine triggers automated workflows: ingest → scene detection → clip generation → metadata tagging → publishing — hyper-specific highlight reels generated without manual intervention. Enables new monetization streams from existing archive content.</div></div>
-          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔒 MovieLabs 2030 Ready</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST pairs advanced infrastructure with cybersecurity and data protection — future-proofing broadcasters for evolving industry standards, rights renewals, and rigorous delivery specifications.</div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Broadcast & Media</div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Multi-4K/8K Stream Bandwidth</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Legacy storage maxes at 1–2 4K feeds. VAST provides the bus capacity to run multiple simultaneous 4K and 8K streams — meeting Netflix and Prime Video delivery specs mandated by major platforms.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Command-F for Video Archives</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Search directly within video content — find specific plays, player actions, or the brand of shoes an athlete is wearing across 20 years of footage. Enables coach film review, investigative journalism, and sponsor monetization at scale.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Own Your Stats — No Rights Fees</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Run open-source AI models locally on VAST — generate your own stats and highlights without paying third-party data provider rights fees or per-query cloud usage fees. Leading sports organizations have saved $1M–$3.5M TCO over 10 years vs. legacy storage vendors.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Automated Clip + Highlight Pipelines</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine triggers automated workflows: ingest → scene detection → clip generation → metadata tagging → publishing — hyper-specific highlight reels generated without manual intervention. Enables new monetization streams from existing archive content.</div></div>
+          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. MovieLabs 2030 Ready</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST pairs advanced infrastructure with cybersecurity and data protection — future-proofing broadcasters for evolving industry standards, rights renewals, and rigorous delivery specifications.</div></div>
         </div>
         """, unsafe_allow_html=True)
     with col_m2:
@@ -1165,12 +1322,12 @@ with tab9:
     with col_f1:
         st.markdown("""
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
-          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">5 USPs for Fraud Detection</div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Real-Time Transaction Streaming</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">High-volume transaction streams ingested via VAST's built-in Kafka-compatible Event Broker — 1.4M events/sec per node. No external Kafka cluster to manage or maintain.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔍 Multi-Branch Criminal Search</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Search across hundreds of bank branches simultaneously — identify criminals using multiple debit cards to withdraw under the $10K reporting limit, moving between locations rapidly. Correlate video, transactions, and audio in one VastDB query.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 Multimodal Fraud Detection</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Facial recognition vectors, transaction metadata, and audio analysis unified in VastDB — no stitching together separate video analytics, transaction DB, and voice tools. One hybrid query across all modalities.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Agentic Risk Workflows</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">When a fraud pattern is detected, an Action Agent automatically freezes the account, logs the incident, alerts compliance, and flags the physical branch — all without human intervention.</div></div>
-          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔒 Hard Multi-Tenant Isolation</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Each bank's data strictly isolated at storage fabric level — FIPS 140-3 encryption, hard tenancy, and full audit trails for regulatory compliance across all jurisdictions.</div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Fraud Detection</div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Real-Time Transaction Streaming</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">High-volume transaction streams ingested via VAST's built-in Kafka-compatible Event Broker — 1.4M events/sec per node. No external Kafka cluster to manage or maintain.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Multi-Branch Criminal Search</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Search across hundreds of bank branches simultaneously — identify criminals using multiple debit cards to withdraw under the $10K reporting limit, moving between locations rapidly. Correlate video, transactions, and audio in one VastDB query.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Multimodal Fraud Detection</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Facial recognition vectors, transaction metadata, and audio analysis unified in VastDB — no stitching together separate video analytics, transaction DB, and voice tools. One hybrid query across all modalities.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Agentic Risk Workflows</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">When a fraud pattern is detected, an Action Agent automatically freezes the account, logs the incident, alerts compliance, and flags the physical branch — all without human intervention.</div></div>
+          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. Hard Multi-Tenant Isolation</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Each bank's data strictly isolated at storage fabric level — FIPS 140-3 encryption, hard tenancy, and full audit trails for regulatory compliance across all jurisdictions.</div></div>
         </div>
         """, unsafe_allow_html=True)
     with col_f2:
@@ -1202,12 +1359,12 @@ with tab13:
     with col_r1:
         st.markdown("""
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
-          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">5 USPs for Physical AI & Robotics</div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📡 Massive Multi-Modal Sensor Ingest</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Simultaneous ingestion of LiDAR, camera, IMU, and thermal sensor streams at extreme bandwidth — VAST's DASE architecture eliminates the I/O bottlenecks that cripple legacy storage during high-frequency sensor fusion.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Sub-Millisecond Agentic Decision Loops</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine triggers inference the moment sensor data lands — enabling real-time decision loops required for autonomous robotics, drone navigation, and humanoid control systems.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔄 Continuous Learning from Operations</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Every inference result is written back to VastDB alongside ground truth labels — enabling continuous model improvement without separate training pipelines or data copies.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧬 Cross-Modal Reasoning in One Query</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VastDB unifies video vectors, LiDAR point clouds, and telemetry metadata in one store — agents reason across modalities simultaneously for complex scene understanding.</div></div>
-          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🏭 1,500 GB300 GPU Proven Scale</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Proven at scale — VAST feeds massive GPU clusters for embodied AI training and inference, scaling to exabyte levels without crashing or performance degradation.</div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Physical AI & Robotics</div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Massive Multi-Modal Sensor Ingest</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Simultaneous ingestion of LiDAR, camera, IMU, and thermal sensor streams at extreme bandwidth — VAST's DASE architecture eliminates the I/O bottlenecks that cripple legacy storage during high-frequency sensor fusion.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Sub-Millisecond Agentic Decision Loops</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">DataEngine triggers inference the moment sensor data lands — enabling real-time decision loops required for autonomous robotics, drone navigation, and humanoid control systems.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Continuous Learning from Operations</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Every inference result is written back to VastDB alongside ground truth labels — enabling continuous model improvement without separate training pipelines or data copies.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Cross-Modal Reasoning in One Query</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VastDB unifies video vectors, LiDAR point clouds, and telemetry metadata in one store — agents reason across modalities simultaneously for complex scene understanding.</div></div>
+          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. 1,500 GB300 GPU Proven Scale</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Proven at scale — VAST feeds massive GPU clusters for embodied AI training and inference, scaling to exabyte levels without crashing or performance degradation.</div></div>
         </div>
         """, unsafe_allow_html=True)
     with col_r2:
@@ -1239,12 +1396,12 @@ with tab8:
     with col_ra1:
         st.markdown("""
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
-          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">5 USPs for Research Assistant</div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📚 Live RAG on Scientific Literature</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Sync Engine continuously ingests PubMed, arXiv, internal research databases, and competitive intelligence sources — knowledge base stays current without manual curation or nightly batch jobs.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🧠 Automated Market Intelligence</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Agents continuously monitor and synthesize competitive intelligence — surfacing insights from unstructured documents, earnings calls, and regulatory filings in real time without analyst intervention.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔍 Structured + Unstructured in One Query</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VastDB unifies structured data (databases, spreadsheets) and unstructured data (PDFs, emails, presentations) — agents run hybrid queries across both in one operation, no ETL between systems.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Event-Driven Knowledge Updates</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">New document lands in S3 → DataEngine triggers chunking and embedding automatically → knowledge base updated within seconds. No nightly batch jobs, no manual curation.</div></div>
-          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Multi-Agent Orchestration via MCP</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">AgentEngine coordinates specialized agents — Literature Agent, Competitive Intelligence Agent, and Synthesis Agent — passing context via Model Context Protocols without external orchestration tools.</div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Research Assistant</div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Live RAG on Scientific Literature</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Sync Engine continuously ingests PubMed, arXiv, internal research databases, and competitive intelligence sources — knowledge base stays current without manual curation or nightly batch jobs.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Automated Market Intelligence</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Agents continuously monitor and synthesize competitive intelligence — surfacing insights from unstructured documents, earnings calls, and regulatory filings in real time without analyst intervention.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Structured + Unstructured in One Query</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VastDB unifies structured data (databases, spreadsheets) and unstructured data (PDFs, emails, presentations) — agents run hybrid queries across both in one operation, no ETL between systems.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Event-Driven Knowledge Updates</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">New document lands in S3 → DataEngine triggers chunking and embedding automatically → knowledge base updated within seconds. No nightly batch jobs, no manual curation.</div></div>
+          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. Multi-Agent Orchestration via MCP</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">AgentEngine coordinates specialized agents — Literature Agent, Competitive Intelligence Agent, and Synthesis Agent — passing context via Model Context Protocols without external orchestration tools.</div></div>
         </div>
         """, unsafe_allow_html=True)
     with col_ra2:
@@ -1276,12 +1433,12 @@ with tab16:
     with col_nt1:
         st.markdown("""
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
-          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">5 USPs for Network Telemetry</div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">💰 Flat Economics vs. Splunk/Datadog</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Per-GB ingestion pricing ($1–$4/GB) is untenable at petabyte scale. VAST runs the entire observability pipeline on-platform at cents/GB — infinite retention, no downsampling, no retention cliffs.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Real-Time Anomaly Detection</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Statistical anomaly detection learns per-service baselines and fires alerts based on deviations — catching novel attack patterns and network anomalies that rules-based systems miss entirely.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔗 Unified Log + Metric + Trace</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">All three telemetry signals in one VastDB, queryable via one SQL engine (Trino). An AI agent joins a latency spike in traces with a CPU anomaly in metrics and an error in logs in a single query.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔍 AI-Driven Root Cause Analysis</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">LLMs query raw telemetry via standard SQL — engineers describe symptoms in natural language, the AI autonomously investigates and identifies root cause, reducing MTTR from hours to minutes.</div></div>
-          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📈 Predictive Capacity Planning</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Historical telemetry queryable with sub-second latency — AI models identify growth trends and predict capacity requirements for data centers before constraints impact performance.</div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Network Telemetry</div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Flat Economics vs. Splunk/Datadog</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Per-GB ingestion pricing ($1–$4/GB) is untenable at petabyte scale. VAST runs the entire observability pipeline on-platform at cents/GB — infinite retention, no downsampling, no retention cliffs.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Real-Time Anomaly Detection</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Statistical anomaly detection learns per-service baselines and fires alerts based on deviations — catching novel attack patterns and network anomalies that rules-based systems miss entirely.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Unified Log + Metric + Trace</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">All three telemetry signals in one VastDB, queryable via one SQL engine (Trino). An AI agent joins a latency spike in traces with a CPU anomaly in metrics and an error in logs in a single query.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. AI-Driven Root Cause Analysis</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">LLMs query raw telemetry via standard SQL — engineers describe symptoms in natural language, the AI autonomously investigates and identifies root cause, reducing MTTR from hours to minutes.</div></div>
+          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. Predictive Capacity Planning</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Historical telemetry queryable with sub-second latency — AI models identify growth trends and predict capacity requirements for data centers before constraints impact performance.</div></div>
         </div>
         """, unsafe_allow_html=True)
     with col_nt2:
@@ -1322,22 +1479,22 @@ with tab14:
           <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">6 USPs for Defense & ISR</div>
 
           <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1e1e2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔒 Sovereign AI — The Inside-Out Intelligence Model</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">6. Sovereign AI — The Inside-Out Intelligence Model</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">EU INTCEN scenario: detect patterns in classified drone video and signals intercepts without leaking data to public LLMs. Unstructured data (video/audio) → VAST DataEngine auto-vectorization → VAST Vector Store → NVIDIA NIM local AI agent. <strong style="color:#e8e8f0;">Agencies retain absolute control over both training data and inference models.</strong></div>
           </div>
 
           <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1e1e2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🌍 NATO Interoperability — Breaking Protocol Barriers</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">7. NATO Interoperability — Breaking Protocol Barriers</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">32 nations, one mission, incompatible tools. VAST's multi-protocol namespace means Maritime Patrol uploads via S3, Land Commander reads via NFS, Analyst reads via SMB — all accessing the <strong style="color:#e8e8f0;">exact same dataset simultaneously with zero-copy sharing</strong>. No file conversion or duplication.</div>
           </div>
 
           <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1e1e2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🗺️ Federated DataSpace — Common Operating Picture</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">8. Federated DataSpace — Common Operating Picture</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST DataSpace creates a single global namespace across geographically dispersed sites. A surveillance image uploaded in Estonia is instantly accessible via metadata to HQ in Brussels. FMN alignment: "Federation over Centralization" — nations keep custody of physical storage while sharing the operational picture.</div>
           </div>
 
           <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1e1e2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📊 Capability Matrix — Tech to Mission</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">9. Capability Matrix — Tech to Mission</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;font-size:13px;">
                 <div style="color:#00c2e0;font-weight:700;">Mission</div><div style="color:#00c2e0;font-weight:700;">VAST Technology</div>
@@ -1352,12 +1509,12 @@ with tab14:
           </div>
 
           <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #1e1e2e;">
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🤖 Robotic Workflows — Reinforcement Learning Loop</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">10. Robotic Workflows — Reinforcement Learning Loop</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">Sensor output/video from robotic control stack → Inference GPU cluster → RL/enforcement → Training GPU cluster (simulation, validation, reinforcement) → AI fine-tuning on VAST DB + DataStore → improved model reloaded. <strong style="color:#e8e8f0;">DataEngine orchestrates the entire continuous learning loop natively.</strong></div>
           </div>
 
           <div>
-            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔐 Hard Multi-Level Security</div>
+            <div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">11. Hard Multi-Level Security</div>
             <div style="font-size:15px;color:#5878a8;line-height:1.7;">FIPS 140-3 validated encryption, VAST Data Shield with atomic ACLs for multi-level security, hard multi-tenancy at the storage fabric — classified workloads air-gapped from unclassified on the same physical infrastructure.</div>
           </div>
         </div>
@@ -1424,12 +1581,12 @@ with tab15:
     with col_e1:
         st.markdown("""
         <div style="background:#080c1e;border:1px solid #2a1a3a;border-radius:12px;padding:22px 26px;">
-          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">5 USPs for Energy & Seismic</div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📡 Petabyte Seismic Data at NVMe Speed</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Seismic archives that previously took days to rehydrate are queryable in seconds on VAST. Geophysicists run pattern-matching across decades of records for exploration and hazard assessment without cold storage delays.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">⚡ Real-Time Safety Sensor Pipelines</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Industrial sensors stream directly to VAST — DataEngine triggers safety inference the moment anomalous readings appear, before equipment failure or safety incidents escalate to critical level.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🔮 Predictive Maintenance</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">AI agents monitor equipment telemetry continuously — identifying degradation patterns weeks before failure, scheduling maintenance proactively and reducing unplanned downtime across the fleet.</div></div>
-          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">🌍 Edge-to-Cloud for Remote Operations</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST DataSpace bridges offshore platforms, remote drilling sites, and grid substations to core data centers. Agents operate locally during connectivity loss — synchronizing automatically on reconnect.</div></div>
-          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">📊 Grid Anomaly Detection & Forecasting</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Event Broker ingests smart grid telemetry at massive scale — AI detects anomalies, forecasts demand spikes, and orchestrates grid balancing responses in real time across the entire network.</div></div>
+          <div style="font-size:15px;font-weight:700;letter-spacing:1.5px;color:#00c2e0;text-transform:uppercase;margin-bottom:18px;">Why VAST for Energy & Seismic</div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">1. Petabyte Seismic Data at NVMe Speed</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Seismic archives that previously took days to rehydrate are queryable in seconds on VAST. Geophysicists run pattern-matching across decades of records for exploration and hazard assessment without cold storage delays.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">2. Real-Time Safety Sensor Pipelines</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Industrial sensors stream directly to VAST — DataEngine triggers safety inference the moment anomalous readings appear, before equipment failure or safety incidents escalate to critical level.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">3. Predictive Maintenance</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">AI agents monitor equipment telemetry continuously — identifying degradation patterns weeks before failure, scheduling maintenance proactively and reducing unplanned downtime across the fleet.</div></div>
+          <div style="margin-bottom:18px;"><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">4. Edge-to-Cloud for Remote Operations</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">VAST DataSpace bridges offshore platforms, remote drilling sites, and grid substations to core data centers. Agents operate locally during connectivity loss — synchronizing automatically on reconnect.</div></div>
+          <div><div style="font-size:17px;font-weight:700;color:#e8e8f0;margin-bottom:6px;">5. Grid Anomaly Detection & Forecasting</div><div style="font-size:15px;color:#5878a8;line-height:1.7;">Event Broker ingests smart grid telemetry at massive scale — AI detects anomalies, forecasts demand spikes, and orchestrates grid balancing responses in real time across the entire network.</div></div>
         </div>
         """, unsafe_allow_html=True)
     with col_e2:
@@ -1778,11 +1935,11 @@ st.markdown("""
 <div class="section section-alt">
   <div class="section-label">Results</div>
   <div class="section-title">The Scale of<br>the Mandate.</div>
-  <div class="section-sub">Real performance numbers that underpin Humain's national AI infrastructure vision.</div>
+  <div class="section-sub">Real performance numbers that underpin VAST's national AI infrastructure vision.</div>
   <div class="stats-grid">
     <div class="stat-cell">
       <div class="stat-number">500K</div>
-      <div class="stat-label">Camera target for KSA<br><span style="font-size:12px;color:#2a4070;">From 25K today — VAST scales linearly</span></div>
+      <div class="stat-label">Camera target for AI Cloud<br><span style="font-size:12px;color:#2a4070;">From 25K today — VAST scales linearly</span></div>
     </div>
     <div class="stat-cell">
       <div class="stat-number">20×</div>
@@ -1806,7 +1963,7 @@ st.markdown("""
 <div class="section">
   <div class="section-label">Time &amp; Cost Savings</div>
   <div class="section-title">Legacy Architecture<br>vs. VAST AIOS.</div>
-  <div class="section-sub">What Humain's public sector clients leave behind when they move to VAST.</div>
+  <div class="section-sub">What VAST's public sector clients leave behind when they move to VAST.</div>
   <div class="ba-grid">
     <div class="ba-card ba-before">
       <div class="ba-header">❌ &nbsp;Legacy Approach</div>
@@ -1834,16 +1991,16 @@ st.markdown("""
 st.markdown('<div id="why"></div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="section section-alt">
-  <div style="font-size:16px;font-weight:700;letter-spacing:2px;color:#00c2e0;text-transform:uppercase;margin-bottom:12px;">Why VAST for Humain</div>
-  <div class="section-title">Built for KSA.</div>
-  <div class="section-sub">Four capabilities that make VAST the only platform for Humain's AI mandate.</div>
+  <div style="font-size:16px;font-weight:700;letter-spacing:2px;color:#00c2e0;text-transform:uppercase;margin-bottom:12px;">Why VAST for VAST</div>
+  <div class="section-title">Built for AI Cloud.</div>
+  <div class="section-sub">Four capabilities that make VAST the only platform for VAST's AI mandate.</div>
 
   <div class="zigzag-item">
     <div class="zigzag-text">
       <div class="section-label">Capability 01</div>
       <h3>NVIDIA NCP Certified — GPU Zero-Starvation</h3>
-      <p>To compete with US-based Neoclouds, Humain must guarantee that expensive GPUs are never starved of data. VAST is the NVIDIA Cloud Partner (NCP) certified data layer powering the world's largest AI clouds — supporting over 3 million GPUs globally.</p>
-      <p style="margin-top:16px;">VAST delivers linear performance scaling for Humain's GPU clusters:</p>
+      <p>To compete with US-based Neoclouds, VAST must guarantee that expensive GPUs are never starved of data. VAST is the NVIDIA Cloud Partner (NCP) certified data layer powering the world's largest AI clouds — supporting over 3 million GPUs globally.</p>
+      <p style="margin-top:16px;">VAST delivers linear performance scaling for VAST's GPU clusters:</p>
       <ul style="margin:12px 0 0;padding-left:20px;color:#5878a8;font-size:15px;line-height:2.0;">
         <li><strong style="color:#e8e8f0;">Read bandwidth exceeding 10TB/s</strong> — GPUs remain fully utilized, maximizing Revenue Per Watt</li>
         <li><strong style="color:#e8e8f0;">3.9Gb/s per Vera Rubin GPU</strong> — exceeding NCP max performance benchmarks</li>
@@ -1853,7 +2010,7 @@ st.markdown("""
     </div>
     <div class="zigzag-visual">
       <div class="pill pill-purple"><span class="pill-dot"></span><div><strong style="color:#7ee8f8;">NVIDIA NCP Certified</strong><br><span style="font-size:14px;">3.9Gb/s per GPU — exceeds NCP max performance</span></div></div>
-      <div class="pill pill-orange"><span class="pill-dot"></span><div><strong style="color:#fed7aa;">10TB/s+ Read Bandwidth</strong><br><span style="font-size:14px;">Zero GPU starvation across Humain's AI factory</span></div></div>
+      <div class="pill pill-orange"><span class="pill-dot"></span><div><strong style="color:#fed7aa;">10TB/s+ Read Bandwidth</strong><br><span style="font-size:14px;">Zero GPU starvation across VAST's AI factory</span></div></div>
       <div class="pill pill-green"><span class="pill-dot"></span><div><strong style="color:#a7f3d0;">3M+ GPUs worldwide</strong><br><span style="font-size:14px;">Powering CoreWeave, xAI, and the world's largest AI clouds</span></div></div>
       <div class="pill pill-blue"><span class="pill-dot"></span><div><strong style="color:#bfdbfe;">99.999% uptime</strong><br><span style="font-size:14px;">Job failure rate −90% vs. legacy parallel file systems</span></div></div>
     </div>
@@ -1863,7 +2020,7 @@ st.markdown("""
     <div class="zigzag-text">
       <div class="section-label">Capability 02</div>
       <h3>Sovereignty as a Service — 26 Ministries, One Platform</h3>
-      <p>Security is Humain's competitive moat. VAST turns data sovereignty into a software feature — enforcing strict isolation at the storage fabric level so a Ministry of Finance dataset is logically air-gapped from a Ministry of Health dataset, even on shared hardware.</p>
+      <p>Security is VAST's competitive moat. VAST turns data sovereignty into a software feature — enforcing strict isolation at the storage fabric level so a Ministry of Finance dataset is logically air-gapped from a Ministry of Health dataset, even on shared hardware.</p>
       <p style="margin-top:16px;">Key sovereignty capabilities built into the storage layer:</p>
       <ul style="margin:12px 0 0;padding-left:20px;color:#5878a8;font-size:15px;line-height:2.0;">
         <li><strong style="color:#e8e8f0;">Hard Multi-Tenancy:</strong> Tenant-specific VIP pools, VLANs, and encryption keys — hard isolation, not soft</li>
@@ -1873,7 +2030,7 @@ st.markdown("""
       </ul>
     </div>
     <div class="zigzag-visual">
-      <div class="pill pill-purple"><span class="pill-dot"></span><div><strong style="color:#7ee8f8;">26 Saudi Ministries</strong><br><span style="font-size:14px;">Hard isolated on a single VAST platform</span></div></div>
+      <div class="pill pill-purple"><span class="pill-dot"></span><div><strong style="color:#7ee8f8;">26 enterprise Ministries</strong><br><span style="font-size:14px;">Hard isolated on a single VAST platform</span></div></div>
       <div class="pill pill-orange"><span class="pill-dot"></span><div><strong style="color:#fed7aa;">Data Passport</strong><br><span style="font-size:14px;">Sovereignty rules travel immutably with every object</span></div></div>
       <div class="pill pill-green"><span class="pill-dot"></span><div><strong style="color:#a7f3d0;">FIPS 140-3 Validated</strong><br><span style="font-size:14px;">Encryption at rest and in flight — government ready</span></div></div>
       <div class="pill pill-blue"><span class="pill-dot"></span><div><strong style="color:#bfdbfe;">Indestructible Snapshots</strong><br><span style="font-size:14px;">Ransomware-proof — no user, including admins, can delete</span></div></div>
@@ -1884,10 +2041,10 @@ st.markdown("""
     <div class="zigzag-text">
       <div class="section-label">Capability 03</div>
       <h3>Global Namespace — Edge to Core to Cloud</h3>
-      <p>The AI Factory fails if data is trapped in silos. VAST DataSpace creates a single global namespace that spans all of Humain's locations — from an edge node in Makka to a training cluster in Riyadh — without complex copy scripts.</p>
+      <p>The AI Factory fails if data is trapped in silos. VAST DataSpace creates a single global namespace that spans all of VAST's locations — from an edge node in edge locations to a training cluster in core data centers — without complex copy scripts.</p>
     </div>
     <div class="zigzag-visual">
-      <div class="pill pill-green"><span class="pill-dot"></span><div><strong style="color:#a7f3d0;">Makka → Riyadh</strong><br><span style="font-size:14px;">Edge data instantly visible to core training clusters via metadata</span></div></div>
+      <div class="pill pill-green"><span class="pill-dot"></span><div><strong style="color:#a7f3d0;">edge locations → core data centers</strong><br><span style="font-size:14px;">Edge data instantly visible to core training clusters via metadata</span></div></div>
       <div class="pill pill-purple"><span class="pill-dot"></span><div><strong style="color:#7ee8f8;">Global Snapshot Clones</strong><br><span style="font-size:14px;">Hydrate inference workspaces at the edge in seconds</span></div></div>
       <div class="pill pill-orange"><span class="pill-dot"></span><div><strong style="color:#fed7aa;">VAST Polaris</strong><br><span style="font-size:14px;">Kubernetes-based global control plane across hybrid + multicloud</span></div></div>
       <div class="pill pill-blue"><span class="pill-dot"></span><div><strong style="color:#bfdbfe;">Dark fiber resilience</strong><br><span style="font-size:14px;">Edge nodes continue locally during outages, sync on reconnect</span></div></div>
@@ -1898,7 +2055,7 @@ st.markdown("""
     <div class="zigzag-text">
       <div class="section-label">Capability 04</div>
       <h3>Flash Economics — Kill the Hard Drive Tax</h3>
-      <p>To make Humain's AI Cloud profitable at scale, VAST breaks the cost curve of flash. Similarity-Based Data Reduction achieves an average 2.12:1 data reduction across global fleets — making all-flash performance economically viable for every workload, including long-term archival.</p>
+      <p>To make VAST's AI Cloud profitable at scale, VAST breaks the cost curve of flash. Similarity-Based Data Reduction achieves an average 2.12:1 data reduction across global fleets — making all-flash performance economically viable for every workload, including long-term archival.</p>
     </div>
     <div class="zigzag-visual">
       <div class="pill pill-purple"><span class="pill-dot"></span><div><strong style="color:#7ee8f8;">2.12:1 Data Reduction</strong><br><span style="font-size:14px;">Avg across global fleets via similarity-based compression</span></div></div>
@@ -1916,7 +2073,7 @@ st.markdown('<div id="entry"></div>', unsafe_allow_html=True)
 st.markdown("""
 <div style="padding:96px 48px 24px; background:#05080f;">
   <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#00c2e0;text-transform:uppercase;margin-bottom:12px;">Choose Your Entry Point</div>
-  <div style="font-size:48px;font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin:0 0 16px;color:#e8e8f0;">Build Humain's<br>AI Cloud.</div>
+  <div style="font-size:48px;font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin:0 0 16px;color:#e8e8f0;">Build VAST's<br>AI Cloud.</div>
   <div style="font-size:17px;color:#5878a8;max-width:560px;line-height:1.7;margin:0 0 40px;">Three phases to a complete AI Operating System — from foundational storage to full agentic AI services.</div>
 </div>
 """, unsafe_allow_html=True)
@@ -1928,7 +2085,7 @@ with col1:
     <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:16px;padding:32px;height:100%;">
       <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00c2e0;margin-bottom:12px;">Phase 1 · DataStore</div>
       <div style="font-size:20px;font-weight:800;color:#e8e8f0;margin-bottom:12px;">Deploy Fundamental Storage</div>
-      <div style="font-size:14px;color:#5878a8;line-height:1.65;margin-bottom:24px;">Establish the foundation: high-performance, resilient, multi-tenant storage. Support NFS, SMB, S3 Object, and NVMe/TCP Block across all 26 ministry workloads simultaneously.</div>
+      <div style="font-size:14px;color:#5878a8;line-height:1.65;margin-bottom:24px;">Establish the foundation: high-performance, resilient, multi-tenant storage. Support NFS, SMB, S3 Object, and NVMe/TCP Block across all 26 tenant workloads simultaneously.</div>
       <div style="font-size:14px;color:#7090c0;line-height:2.2;">
         <div>✓ &nbsp;NFS / SMB / S3 Object / NVMe-TCP Block</div>
         <div>✓ &nbsp;Global namespaces &amp; instant snapshots</div>
@@ -1946,7 +2103,7 @@ with col2:
     <div style="background:linear-gradient(160deg,#13132a,#111120);border:2px solid #6d28d9;border-radius:16px;padding:32px;height:100%;box-shadow:0 0 40px rgba(109,40,217,0.2);">
       <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00c2e0;margin-bottom:12px;">Phase 2 — Recommended</div>
       <div style="font-size:20px;font-weight:800;color:#e8e8f0;margin-bottom:12px;">Add Advanced AI Data Services</div>
-      <div style="font-size:14px;color:#5878a8;line-height:1.65;margin-bottom:24px;">Layer on VastDB, Event Broker, Vector Database, InsightEngine, AgentEngine, and Observability. Differentiate Humain's cloud from generic providers.</div>
+      <div style="font-size:14px;color:#5878a8;line-height:1.65;margin-bottom:24px;">Layer on VastDB, Event Broker, Vector Database, InsightEngine, AgentEngine, and Observability. Differentiate VAST's cloud from generic providers.</div>
       <div style="font-size:14px;color:#7090c0;line-height:2.2;">
         <div>✓ &nbsp;Vector DB + Transactional DB unified</div>
         <div>✓ &nbsp;Event Broker — 1M events/sec</div>
@@ -1964,7 +2121,7 @@ with col3:
     <div style="background:#0a0e1f;border:1px solid #1a2540;border-radius:16px;padding:32px;height:100%;">
       <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00c2e0;margin-bottom:12px;">Blueprints</div>
       <div style="font-size:20px;font-weight:800;color:#e8e8f0;margin-bottom:12px;">Deploy with Open-Source Blueprints</div>
-      <div style="font-size:14px;color:#5878a8;line-height:1.65;margin-bottom:24px;">Production-ready VSS and Document RAG blueprints deploy in under a day. Fully open-source — customize for Hajj crowd management, ministry RAG, or traffic intelligence.</div>
+      <div style="font-size:14px;color:#5878a8;line-height:1.65;margin-bottom:24px;">Production-ready VSS and Document RAG blueprints deploy in under a day. Fully open-source — customize for large-scale crowd management, tenant RAG, or traffic intelligence.</div>
       <div style="font-size:14px;color:#7090c0;line-height:2.2;">
         <div>✓ &nbsp;VSS Blueprint — Video Search Summarization</div>
         <div>✓ &nbsp;Document RAG Assistant Blueprint</div>
@@ -1981,9 +2138,9 @@ with col3:
 st.markdown("""
 <div class="footer">
   <div>
-    <div class="footer-brand">VAST × NVIDIA</div>
-    <div style="font-size:12px;color:#1a3060;margin-top:4px;">The AI Operating System for the Kingdom of Saudi Arabia</div>
+    <div class="footer-brand">VAST AI Factory</div>
+    <div style="font-size:12px;color:#1a3060;margin-top:4px;">The AI Operating System for Public &amp; Private Cloud</div>
   </div>
-  <div style="font-size:12px;color:#1a3060;">© 2025 VAST Data. Confidential — prepared for Humain.</div>
+  <div style="font-size:12px;color:#1a3060;">© 2025 VAST Data. All rights reserved.</div>
 </div>
 """, unsafe_allow_html=True)
